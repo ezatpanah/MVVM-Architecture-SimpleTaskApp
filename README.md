@@ -10,12 +10,14 @@ The app was written in Kotlin.
 Technologies and Libraries Used :
 
 - Room Database
-- View Binding
-- Dagger Hilt
+- LiveData
 - Flow
 - Coroutines
+- Dagger Hilt
 - ViewModel
 - Lottie
+- View Binding
+
 
 
 Screen-Shot :
