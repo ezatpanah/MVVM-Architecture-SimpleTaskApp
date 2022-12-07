@@ -1,6 +1,7 @@
 # SimpleNoteApp-MVVM
 
 Overview :
+<br>
 The purpose of this project series is to teach different architectures with different structures, and you can check these architectures and structures.
 
 This project in
