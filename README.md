@@ -1,8 +1,12 @@
 # SimpleNoteApp-MVVM
 
 Overview :
+The purpose of this project series is to teach different architectures with different structures, and you can check these architectures and structures.
 
-...
+This project in
+- MVP architecture : https://github.com/ezatpanah/SimpleNoteApp-MVP
+- MVVM architecture : Current Repo
+- MVI architecture : Coming soon
 
 The app was written in Kotlin.
 
