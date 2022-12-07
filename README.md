@@ -5,7 +5,7 @@ Overview :
 The purpose of this project series is to teach different architectures with different structures, and you can check these architectures and structures.
 
 This project in
-- MVP architecture : https://github.com/ezatpanah/SimpleNoteApp-MVP
+- MVP architecture : https://github.com/ezatpanah/SimpleNoteApp-MVP [ Room Database - View Binding - Dagger Hilt - RxJava - Lottie]
 - MVVM architecture : Current Repo
 - MVI architecture : Coming soon
 
