@@ -1,11 +1,11 @@
-# SimpleNoteApp-MVVM
+# SimpleTaskApp-MVVM
 
 Overview :
 <br>
 The purpose of this project series is to teach different architectures with different structures, and you can check these architectures and structures.
 
 This project in
-- MVP architecture : https://github.com/ezatpanah/SimpleNoteApp-MVP [ Room Database - View Binding - Dagger Hilt - RxJava - Lottie]
+- MVP architecture : https://github.com/ezatpanah/SimpleTaskApp-MVP [ Room Database - View Binding - Dagger Hilt - RxJava - Lottie]
 - MVVM architecture : Current Repo
 - MVI architecture : Coming soon
 
@@ -27,4 +27,6 @@ Technologies and Libraries Used :
 
 Screen-Shot :
 <br>
-<img alt="Ezatpanah SimpleNoteApp-MVVM" src="screenshots/Screenshot_1669915818.png" width="18%"> <img alt="Ezatpanah SimpleNoteApp-MVVM" src="screenshots/Screenshot_1669915869.png" width="18%"> <img alt="Ezatpanah SimpleNoteApp-MVVM" src="screenshots/Screenshot_1669919468.png" width="18%"> <img alt="Ezatpanah SimpleNoteApp-MVVM" src="screenshots/Screenshot_1669919473.png" width="18%"> <img alt="Ezatpanah SimpleNoteApp-MVVM" src="screenshots/Screenshot_1669919479.png" width="18%">
+Screen-Shot :
+<br>
+<img alt="Ezatpanah SimpleTaskApp-MVVM" src="screenshots/Screenshot_1670439161.png" width="18%"> <img alt="Ezatpanah SimpleTaskApp-MVVM" src="screenshots/Screenshot_1670439165.png" width="18%"> <img alt="Ezatpanah SimpleTaskApp-MVVM" src="screenshots/Screenshot_1670439228.png" width="18%"> <img alt="Ezatpanah SimpleTaskApp-MVVM" src="screenshots/Screenshot_1670439231.png" width="18%"> <img alt="Ezatpanah SimpleTaskApp-MVVM" src="screenshots/Screenshot_1670439234.png" width="18%">
