@@ -1,50 +1,49 @@
-package com.ezatpanah.simplenoteapp_mvvm.ui.add
+package com.ezatpanah.simpletodoapp_mvvm.ui.add
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.ezatpanah.simplenoteapp_mvvm.R
-import com.ezatpanah.simplenoteapp_mvvm.databinding.ActivityMainBinding
-import com.ezatpanah.simplenoteapp_mvvm.databinding.FragmentAddNoteBinding
-import com.ezatpanah.simplenoteapp_mvvm.db.NoteEntity
-import com.ezatpanah.simplenoteapp_mvvm.utils.*
-import com.ezatpanah.simplenoteapp_mvvm.viewmodel.NoteViewModel
+import com.ezatpanah.simpletodoapp_mvvm.databinding.FragmentAddTaskBinding
+import com.ezatpanah.simpletodoapp_mvvm.db.TaskEntity
+import com.ezatpanah.simpletodoapp_mvvm.utils.*
+import com.ezatpanah.simpletodoapp_mvvm.utils.Constants.BUNDLE_ID
+import com.ezatpanah.simpletodoapp_mvvm.utils.Constants.EDIT
+import com.ezatpanah.simpletodoapp_mvvm.utils.Constants.NEW
+import com.ezatpanah.simpletodoapp_mvvm.viewmodel.TaskViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AddNoteFragment : BottomSheetDialogFragment() {
+class AddTaskFragment : BottomSheetDialogFragment() {
 
-    private var _binding: FragmentAddNoteBinding? = null
+    private var _binding: FragmentAddTaskBinding? = null
     private val binding get() = _binding
 
     @Inject
-    lateinit var entity: NoteEntity
+    lateinit var entity: TaskEntity
 
-    private val viewModel: NoteViewModel by viewModels()
+    private val viewModel: TaskViewModel by viewModels()
 
     private var category = ""
     private var priority = ""
-    //private var noteId = 0
+    private var noteId = 0
     private var type = ""
     private var isEdit = false
     private val categoriesList: MutableList<String> = mutableListOf()
     private val prioriesList: MutableList<String> = mutableListOf()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentAddNoteBinding.inflate(layoutInflater)
+        _binding = FragmentAddTaskBinding.inflate(layoutInflater)
         return binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var noteId = arguments?.getInt(BUNDLE_ID) ?: 0
+        noteId = arguments?.getInt(BUNDLE_ID) ?: 0
 
         if (noteId > 0) {
             type = EDIT
@@ -68,7 +67,7 @@ class AddNoteFragment : BottomSheetDialogFragment() {
             }
             if (type == EDIT) {
                 viewModel.getDetailsNote(noteId)
-                viewModel.noteDetail.observe(viewLifecycleOwner) { itData ->
+                viewModel.taskDetail.observe(viewLifecycleOwner) { itData ->
                     itData.data?.let {
                         titleEdt.setText(it.title)
                         descEdt.setText(it.desc)
@@ -87,7 +86,7 @@ class AddNoteFragment : BottomSheetDialogFragment() {
                 entity.pr = priority
 
                 if (title.isNotEmpty() && desc.isNotEmpty()) {
-                    viewModel.saveEditNote(isEdit, entity)
+                    viewModel.saveEditTask(isEdit, entity)
                 }
 
                 dismiss()

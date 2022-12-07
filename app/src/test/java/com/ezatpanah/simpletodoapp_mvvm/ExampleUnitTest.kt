@@ -1,4 +1,4 @@
-package com.ezatpanah.simplenoteapp_mvvm
+package com.ezatpanah.simpletodoapp_mvvm
 
 import org.junit.Test
 

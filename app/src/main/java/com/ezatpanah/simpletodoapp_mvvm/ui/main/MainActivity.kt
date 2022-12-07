@@ -1,4 +1,4 @@
-package com.ezatpanah.simplenoteapp_mvvm.ui.main
+package com.ezatpanah.simpletodoapp_mvvm.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,13 +8,21 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
-import com.ezatpanah.simplenoteapp_mvvm.R
-import com.ezatpanah.simplenoteapp_mvvm.adapter.NoteAdapter
-import com.ezatpanah.simplenoteapp_mvvm.databinding.ActivityMainBinding
-import com.ezatpanah.simplenoteapp_mvvm.db.NoteEntity
-import com.ezatpanah.simplenoteapp_mvvm.ui.add.AddNoteFragment
-import com.ezatpanah.simplenoteapp_mvvm.utils.*
-import com.ezatpanah.simplenoteapp_mvvm.viewmodel.NoteViewModel
+import com.ezatpanah.simpletodoapp_mvvm.R
+import com.ezatpanah.simpletodoapp_mvvm.adapter.NoteAdapter
+import com.ezatpanah.simpletodoapp_mvvm.databinding.ActivityMainBinding
+import com.ezatpanah.simpletodoapp_mvvm.db.TaskEntity
+import com.ezatpanah.simpletodoapp_mvvm.ui.add.AddTaskFragment
+import com.ezatpanah.simpletodoapp_mvvm.ui.deleteall.DeleteAllFragment
+import com.ezatpanah.simpletodoapp_mvvm.utils.*
+import com.ezatpanah.simpletodoapp_mvvm.utils.Constants.ALL
+import com.ezatpanah.simpletodoapp_mvvm.utils.Constants.BUNDLE_ID
+import com.ezatpanah.simpletodoapp_mvvm.utils.Constants.DELETE
+import com.ezatpanah.simpletodoapp_mvvm.utils.Constants.EDIT
+import com.ezatpanah.simpletodoapp_mvvm.utils.Constants.HIGH
+import com.ezatpanah.simpletodoapp_mvvm.utils.Constants.LOW
+import com.ezatpanah.simpletodoapp_mvvm.utils.Constants.NORMAL
+import com.ezatpanah.simpletodoapp_mvvm.viewmodel.TaskViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -27,9 +35,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var noteAdapter: NoteAdapter
 
     @Inject
-    lateinit var entity: NoteEntity
+    lateinit var entity: TaskEntity
 
-    private val noteViewModel: NoteViewModel by viewModels()
+    private val taskViewModel: TaskViewModel by viewModels()
 
     private var selectedItem = 0
 
@@ -39,27 +47,31 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding?.root)
         binding?.apply {
 
-            setSupportActionBar(notesToolbar)
+            setSupportActionBar(tasksToolbar)
 
-            btnAddNote.setOnClickListener {
-                AddNoteFragment().show(supportFragmentManager, AddNoteFragment().tag)
+            btnAddTask.setOnClickListener {
+                AddTaskFragment().show(supportFragmentManager, AddTaskFragment().tag)
             }
 
-            noteViewModel.getAllNotes()
-            noteViewModel.notesData.observe(this@MainActivity) {
+            taskViewModel.getAllNotes()
+            taskViewModel.tasksData.observe(this@MainActivity) {
                 showEmpty(it.isEmpty)
                 noteAdapter.setData(it.data!!)
-                noteList.apply {
+                taskList.apply {
                     layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
                     adapter = noteAdapter
                 }
 
             }
 
-            notesToolbar.setOnMenuItemClickListener {
+            tasksToolbar.setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.actionFilter -> {
                         filterByPriority()
+                        return@setOnMenuItemClickListener true
+                    }
+                    R.id.actionDeleteAll -> {
+                        DeleteAllFragment().show(supportFragmentManager, DeleteAllFragment.TAG)
                         return@setOnMenuItemClickListener true
                     }
                     else -> {
@@ -71,11 +83,11 @@ class MainActivity : AppCompatActivity() {
             noteAdapter.setOnItemClickListener { noteEntity, type ->
                 when (type) {
                     EDIT -> {
-                        val noteFragment=AddNoteFragment()
+                        val noteFragment=AddTaskFragment()
                         val bundle = Bundle()
                         bundle.putInt(BUNDLE_ID,noteEntity.id)
                         noteFragment.arguments=bundle
-                        noteFragment.show(supportFragmentManager,AddNoteFragment().tag)
+                        noteFragment.show(supportFragmentManager,AddTaskFragment().tag)
                     }
                     DELETE -> {
                         entity.id = noteEntity.id
@@ -83,7 +95,7 @@ class MainActivity : AppCompatActivity() {
                         entity.desc = noteEntity.desc
                         entity.cat = noteEntity.cat
                         entity.pr = noteEntity.pr
-                        noteViewModel.deleteNote(entity)
+                        taskViewModel.deleteNote(entity)
                     }
                 }
             }
@@ -94,11 +106,11 @@ class MainActivity : AppCompatActivity() {
     private fun showEmpty(isShown: Boolean) {
         binding?.apply {
             if (isShown) {
-                emptyLay.visibility = View.VISIBLE
-                noteList.visibility = View.GONE
+                emptyBody.visibility = View.VISIBLE
+                listBody.visibility = View.GONE
             } else {
-                emptyLay.visibility = View.GONE
-                noteList.visibility = View.VISIBLE
+                emptyBody.visibility = View.GONE
+                listBody.visibility = View.VISIBLE
             }
         }
     }
@@ -109,10 +121,10 @@ class MainActivity : AppCompatActivity() {
         builder.setSingleChoiceItems(priories, selectedItem) { dialog, item ->
             when (item) {
                 0 -> {
-                    noteViewModel.getAllNotes()
+                    taskViewModel.getAllNotes()
                 }
                 in 1..3 -> {
-                    noteViewModel.getFilterNotes(priories[item])
+                    taskViewModel.getFilterNotes(priories[item])
                 }
             }
             selectedItem = item
@@ -133,7 +145,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                noteViewModel.getSearchNotes(newText!!)
+                taskViewModel.getSearchNotes(newText!!)
                 return true
             }
 

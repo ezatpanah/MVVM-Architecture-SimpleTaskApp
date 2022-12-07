@@ -1,4 +1,4 @@
-package com.ezatpanah.simplenoteapp_mvvm.adapter
+package com.ezatpanah.simpletodoapp_mvvm.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,17 +8,26 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.ezatpanah.simplenoteapp_mvvm.R
-import com.ezatpanah.simplenoteapp_mvvm.databinding.ItemNotesBinding
-import com.ezatpanah.simplenoteapp_mvvm.db.NoteEntity
-import com.ezatpanah.simplenoteapp_mvvm.utils.*
+import com.ezatpanah.simpletodoapp_mvvm.R
+import com.ezatpanah.simpletodoapp_mvvm.databinding.ItemNotesBinding
+import com.ezatpanah.simpletodoapp_mvvm.db.TaskEntity
+import com.ezatpanah.simpletodoapp_mvvm.utils.*
+import com.ezatpanah.simpletodoapp_mvvm.utils.Constants.DELETE
+import com.ezatpanah.simpletodoapp_mvvm.utils.Constants.EDIT
+import com.ezatpanah.simpletodoapp_mvvm.utils.Constants.EDUCATION
+import com.ezatpanah.simpletodoapp_mvvm.utils.Constants.HEALTH
+import com.ezatpanah.simpletodoapp_mvvm.utils.Constants.HIGH
+import com.ezatpanah.simpletodoapp_mvvm.utils.Constants.HOME
+import com.ezatpanah.simpletodoapp_mvvm.utils.Constants.LOW
+import com.ezatpanah.simpletodoapp_mvvm.utils.Constants.NORMAL
+import com.ezatpanah.simpletodoapp_mvvm.utils.Constants.WORK
 import javax.inject.Inject
 
 class NoteAdapter @Inject constructor() : RecyclerView.Adapter<NoteAdapter.ViewHolder>() {
 
     private lateinit var binding: ItemNotesBinding
     private lateinit var context: Context
-    private var noteList = emptyList<NoteEntity>()
+    private var taskList = emptyList<TaskEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         binding = ItemNotesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -27,16 +36,16 @@ class NoteAdapter @Inject constructor() : RecyclerView.Adapter<NoteAdapter.ViewH
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(noteList[position])
+        holder.bind(taskList[position])
         holder.setIsRecyclable(false)
     }
 
-    override fun getItemCount() = noteList.size
+    override fun getItemCount() = taskList.size
 
     inner class ViewHolder : RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
-        fun bind(item: NoteEntity) {
+        fun bind(item: TaskEntity) {
             binding.apply {
                 titleTxt.text = item.title
                 descTxt.text = item.desc
@@ -79,20 +88,20 @@ class NoteAdapter @Inject constructor() : RecyclerView.Adapter<NoteAdapter.ViewH
         }
     }
 
-    private var onItemClickListener: ((NoteEntity, String) -> Unit)? = null
+    private var onItemClickListener: ((TaskEntity, String) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (NoteEntity, String) -> Unit) {
+    fun setOnItemClickListener(listener: (TaskEntity, String) -> Unit) {
         onItemClickListener = listener
     }
 
-    fun setData(data: List<NoteEntity>) {
-        val moviesDiffUtil = NotesDiffUtils(noteList, data)
+    fun setData(data: List<TaskEntity>) {
+        val moviesDiffUtil = NotesDiffUtils(taskList, data)
         val diffUtils = DiffUtil.calculateDiff(moviesDiffUtil)
-        noteList = data
+        taskList = data
         diffUtils.dispatchUpdatesTo(this)
     }
 
-    class NotesDiffUtils(private val oldItem: List<NoteEntity>, private val newItem: List<NoteEntity>) : DiffUtil.Callback() {
+    class NotesDiffUtils(private val oldItem: List<TaskEntity>, private val newItem: List<TaskEntity>) : DiffUtil.Callback() {
 
         override fun getOldListSize(): Int {
             return oldItem.size

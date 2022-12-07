@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".ui.add.AddNoteFragment">
+    tools:context=".ui.add.AddTaskFragment">
 
     <ImageView
         android:id="@+id/imgClose"

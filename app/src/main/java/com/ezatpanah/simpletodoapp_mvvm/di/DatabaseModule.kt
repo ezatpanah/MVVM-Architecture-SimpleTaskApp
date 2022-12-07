@@ -1,10 +1,10 @@
-package com.ezatpanah.simplenoteapp_mvvm.di
+package com.ezatpanah.simpletodoapp_mvvm.di
 
 import android.content.Context
 import androidx.room.Room
-import com.ezatpanah.simplenoteapp_mvvm.db.NoteDatabase
-import com.ezatpanah.simplenoteapp_mvvm.db.NoteEntity
-import com.ezatpanah.simplenoteapp_mvvm.utils.NOTE_DATABASE
+import com.ezatpanah.simpletodoapp_mvvm.db.TaskDatabase
+import com.ezatpanah.simpletodoapp_mvvm.db.TaskEntity
+import com.ezatpanah.simpletodoapp_mvvm.utils.Constants.TASK_DATABASE
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,17 +19,17 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(
-        context, NoteDatabase::class.java, NOTE_DATABASE )
+        context, TaskDatabase::class.java, TASK_DATABASE )
         .allowMainThreadQueries()
         .fallbackToDestructiveMigration()
         .build()
 
     @Provides
     @Singleton
-    fun provideDao(db : NoteDatabase) = db.noteDao()
+    fun provideDao(db : TaskDatabase) = db.taskDao()
 
     @Provides
     @Singleton
-    fun provideEntity() = NoteEntity()
+    fun provideEntity() = TaskEntity()
 
 }

@@ -1,4 +1,4 @@
-package com.ezatpanah.simplenoteapp_mvvm.utils
+package com.ezatpanah.simpletodoapp_mvvm.utils
 
 data class DataStatus<out T>(val status: Status, val data: T? = null, val isEmpty: Boolean) {
 

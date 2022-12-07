@@ -6,12 +6,20 @@
         android:icon="@drawable/ic_round_search_24"
         android:title="search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:iconTint="@color/black"
+        app:iconTint="@color/white"
         app:showAsAction="ifRoom|collapseActionView" />
     <item
         android:id="@+id/actionFilter"
         android:icon="@drawable/ic_filter"
         android:title="filter"
-        app:iconTint="@color/black"
+        app:showAsAction="always"
+        app:iconTint="@color/white"
+        />
+
+    <item
+        android:id="@+id/actionDeleteAll"
+        android:icon="@drawable/ic_baseline_delete_forever_24"
+        android:title="@string/deleteall"
+        app:iconTint="@color/white"
         app:showAsAction="always" />
 </menu>

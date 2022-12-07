@@ -1,7 +1,6 @@
 <resources>
-    <string name="app_name">SimpleNoteApp-MVVM</string>
+    <string name="app_name">SimpleToDoApp-MVVM</string>
 
-    <string name="noteAppName">My Note</string>
     <string name="filter">Filter</string>
     <string name="title">Title</string>
     <string name="desc">Description</string>
@@ -10,16 +9,14 @@
     <string name="save">Save</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
-
     <string name="search">Search...</string>
-    <string name="checkInternet">Please Check Your Connection</string>
-    <string name="emptyList">List is empty</string>
-    <string name="ingredients">Ingredients</string>
-    <string name="measure">Measure</string>
-
     <string name="home">Home</string>
     <string name="favorite">Favorite</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="deleteall">DeleteAll</string>
+
+    <string name="delete_msg_body">Are you sure to delete All your Data ?</string>
+    <string name="delete_title">Delete All Data</string>
+    <string name="delete_yes">Yes!</string>
+    <string name="delete_cancle">Cancel</string>
 
 </resources>

@@ -1,11 +1,11 @@
-package com.ezatpanah.simplenoteapp_mvvm.db
+package com.ezatpanah.simpletodoapp_mvvm.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.ezatpanah.simplenoteapp_mvvm.utils.NOTE_TABLE
+import com.ezatpanah.simpletodoapp_mvvm.utils.Constants.TASK_TABLE
 
-@Entity(tableName = NOTE_TABLE)
-data class NoteEntity(
+@Entity(tableName = TASK_TABLE)
+data class TaskEntity(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
     var title: String = "",

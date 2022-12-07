@@ -1,4 +1,4 @@
-package com.ezatpanah.simplenoteapp_mvvm.utils
+package com.ezatpanah.simpletodoapp_mvvm.utils
 
 import android.view.View
 import android.widget.AdapterView
