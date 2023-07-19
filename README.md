@@ -29,4 +29,4 @@ Technologies and Libraries Used :
 <br>
 Screen-Shot :
 <br>
-
+<img alt="Ezatpanah SimpleTaskApp-MVVM" src="screenshots/Screenshot_1670439161.png" width="18%"><img alt="Ezatpanah SimpleTaskApp-MVVM" src="screenshots/Screenshot_1670439165.png" width="18%"><img alt="Ezatpanah SimpleTaskApp-MVVM" src="screenshots/Screenshot_1670439228.png" width="18%"><img alt="Ezatpanah SimpleTaskApp-MVVM" src="screenshots/Screenshot_1670439231.png" width="18%"><img alt="Ezatpanah SimpleTaskApp-MVVM" src="screenshots/Screenshot_1670439234.png" width="18%">
