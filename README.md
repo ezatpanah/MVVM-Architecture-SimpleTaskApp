@@ -26,8 +26,6 @@ Technologies and Libraries Used :
 - View Binding
 
 
-
-Screen-Shot :
 <br>
 Screen-Shot :
 <br>
