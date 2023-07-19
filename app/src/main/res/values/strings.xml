@@ -21,5 +21,10 @@
     <string name="favorite">Favorite</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="delete_title">Delete All Data</string>
+    <string name="delete_msg_body">Are you sure to delete All your data>?</string>
+    <string name="delete_yes">Yes!</string>
+    <string name="delete_cancle">Cancel</string>
+    <string name="deleteall">Delete All</string>
 
 </resources>
